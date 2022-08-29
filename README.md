@@ -2,7 +2,7 @@
 
 When a new paper is added to paperpile, add it to a notion library.
 
-## Installation
+## Setup
 
 ### On Notion
 

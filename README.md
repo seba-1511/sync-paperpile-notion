@@ -1,6 +1,6 @@
-# sync-paperpile-to-notion
+# sync-paperpile-notion
 
-When a new paper is added to paperpile, add it to a notion library.
+Sync changes in Paperpile to a Notion database.
 
 ## Setup
 

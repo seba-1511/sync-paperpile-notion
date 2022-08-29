@@ -1,0 +1,39 @@
+
+name: Sync To Notion
+
+on: [push, ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository.
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+
+      - name: Install Dependencies
+        run: |
+            python3 --version
+            python3 -m pip install -U pip
+            pip3 install requests bibtexparser
+
+      - name: Sync to notion
+        run: python sync.py
+        env:
+          NOTION_TOKEN: ${{secrets.NOTION_TOKEN}}
+          DATABASE_IDENTIFIER: ${{secrets.DATABASE_IDENTIFIER}}
+
+      - name: Update archive
+        run: |
+            git config --global user.email "seba-1511@hotmail.com"
+            git config --global user.name "Paperpile to Notion"
+            git add .
+            git commit -am 'Update archive.'
+        shell: bash
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+           github_token: ${{ secrets.GITHUB_TOKEN }}

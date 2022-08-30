@@ -220,7 +220,7 @@ def main():
 
     # add each entry to notion database
     update_archive = False
-    for entry in bibliography.entries:
+    for entry in reversed(bibliography.entries):
 
         title = entry.get('title', '')
         title = clean_str(title)
@@ -233,8 +233,6 @@ def main():
         year = entry.get('year', '')
         link = entry.get('url', '')
         ref_id = entry.get('ID')
-
-        notion_fetch_page(ref_id)
 
         if ref_id not in archive_ids: # new page
             notion_add_entry(
